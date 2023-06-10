@@ -11,6 +11,7 @@ final Map<String, String> colors = {
   "green": "\x1B[32m",
   "yellow": "\x1B[33m",
   "blue": "\x1B[34m",
+  "magenta": "\x1B[35m",
   "reset": "\x1B[0m"
 };
 

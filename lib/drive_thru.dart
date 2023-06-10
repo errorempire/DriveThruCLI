@@ -17,7 +17,23 @@ void prompt(String url) {
 }
 
 void inform() {
-  print("inform");
+  print("""
+${colors["magenta"]!}
+@@@@@@@@@@@@@@@@@@@@
+@@@              @@@
+@@@ DriveThruCLI @@@
+@@@              @@@
+@@@@@@@@@@@@@@@@@@@@
+${colors["reset"]!}
+
+${colors["yellow"]!}Usage:${colors["reset"]!}
+    command [options] [arguments]
+
+${colors["yellow"]!}Options:${colors["reset"]!}
+drivethru configure                            :: configure the credentials
+drivethru ls            | list                 :: list all the files in Google Drive
+drivethru u [arguments] | upload [arguments]   :: upload a file to Google Drive
+""");
   exit(0);
 }
 
