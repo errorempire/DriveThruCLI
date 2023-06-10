@@ -1,4 +1,4 @@
-name: drive
+name: drive_thru
 description: DriveThruCLI that communicates with the Google Drive
 version: 1.0.0
 
@@ -6,7 +6,7 @@ environment:
   sdk: ^3.0.4
 
 executables:
-  drive:
+  drivethru:
 
 dependencies:
   dotenv: ^4.1.0

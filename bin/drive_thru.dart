@@ -1,6 +1,6 @@
-import 'package:drive/configuration.dart';
-import 'package:drive/drive.dart';
-import 'package:drive/responses.dart';
+import 'package:drive_thru/configuration.dart';
+import 'package:drive_thru/drive_thru.dart';
+import 'package:drive_thru/responses.dart';
 
 void main(List<String> arguments) async {
   if (arguments.isEmpty) inform();
