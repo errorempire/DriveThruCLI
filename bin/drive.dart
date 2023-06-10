@@ -1,68 +1,29 @@
-import 'dart:io';
-
-import 'package:dotenv/dotenv.dart';
-import 'package:googleapis_auth/auth_io.dart';
-import 'package:googleapis/drive/v3.dart' as drive_v3;
-import 'package:prompts/prompts.dart' as prompts;
-
-var env = DotEnv()..load();
-
-final ClientId clientId = ClientId(env["KEY"]!, env["SECRET"]);
-final List<String> scopes = [drive_v3.DriveApi.driveScope];
+import 'package:drive/configuration.dart';
+import 'package:drive/drive.dart';
+import 'package:drive/responses.dart';
 
 void main(List<String> arguments) async {
-  for (var argument in arguments) {
-    if (argument == "ls") {
-      listFiles(clientId, scopes);
-    } else if (argument == "mkdir") {
-      create(clientId, scopes, prompts.get('File name'));
+  if (arguments.isEmpty) inform();
+
+  String cmd = arguments[0];
+
+  if (cmd == "configure") {
+    if (arguments.length > 1) {
+      configure(ask("Client ID: "), ask("Client Secret: "), mode: arguments[1]);
+      return;
     }
+    configure(ask("Client ID: "), ask("Client Secret: "));
   }
-}
 
-void prompt(String url) {
-  print("Please go to the following URL and grant access:");
-  print("  => $url");
-}
+  checkConfiguration();
 
-dynamic create(ClientId clientId, List<String> scopes, String name) {
-  clientViaUserConsent(clientId, scopes, prompt)
-      .then((AuthClient client) async {
-    var driveApi = drive_v3.DriveApi(client);
+  (cmd == "ls" || cmd == "list") ? listFiles(credentials(), scopes) : "";
 
-    var file = drive_v3.File();
-    file.name = name;
-
-    var fileToUpload = File('./pubspec.yaml');
-    var media =
-        drive_v3.Media(fileToUpload.openRead(), fileToUpload.lengthSync());
-
-    var request = await driveApi.files.create(
-      file,
-      uploadMedia: media,
-      // uploadOptions: drive_v3
-    );
-
-    print('Uploaded file ID: ${request.id}');
-
-    client.close();
-  });
-}
-
-dynamic listFiles(ClientId clientId, List<String> scopes) {
-  clientViaUserConsent(clientId, scopes, prompt)
-      .then((AuthClient client) async {
-    var driveApi = drive_v3.DriveApi(client);
-
-    try {
-      var fileList = await driveApi.files.list();
-      for (var file in fileList.files!) {
-        print('File name: ${file.name}, File id: ${file.id}');
-      }
-    } catch (e) {
-      print('An error occurred: $e');
+  if (cmd == "u" || cmd == "upload") {
+    if (arguments.length > 1) {
+      uploadFile(credentials(), scopes, ask("File name: "), arguments[1]);
+      return;
     }
-
-    client.close();
-  });
+    error("error");
+  }
 }

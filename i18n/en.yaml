@@ -1,0 +1,3 @@
+error: "An error occurred"
+missingConfiguration: "Missing configuration file, please run: drive configure"
+grant_access: "Please go to the following URL and grant access: "
