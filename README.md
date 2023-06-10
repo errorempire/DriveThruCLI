@@ -1,6 +1,6 @@
-# DrivetThruCLI
+# DriveThruCLI
 
-- [DrivetThruCLI](#drivetthrucli)
+- [DriveThruCLI](#drivethrucli)
   - [Local Usage](#local-usage)
   - [Global Usage](#global-usage)
   - [Uninstall](#uninstall)
@@ -33,5 +33,5 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 ## Uninstall
 
 ```sh
-dart pub global deactivate drivethru
+dart pub global deactivate drive_thru
 ```

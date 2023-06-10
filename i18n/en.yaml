@@ -1,3 +1,3 @@
 error: "An error occurred"
-missingConfiguration: "Missing configuration file, please run: drive configure"
+missingConfiguration: "Missing configuration file, please run: drivethru configure"
 grant_access: "Please go to the following URL and grant access: "

@@ -6,7 +6,7 @@ environment:
   sdk: ^3.0.4
 
 executables:
-  drivethru:
+  drivethru: drive_thru
 
 dependencies:
   dotenv: ^4.1.0
