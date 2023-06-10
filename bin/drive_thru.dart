@@ -17,13 +17,14 @@ void main(List<String> arguments) async {
 
   checkConfiguration();
 
-  (cmd == "ls" || cmd == "list") ? listFiles(credentials(), scopes) : "";
+  (cmd == "ls" || cmd == "list") ? listFiles(credentials()) : "";
 
   if (cmd == "u" || cmd == "upload") {
     if (arguments.length > 1) {
-      uploadFile(credentials(), scopes, ask("File name: "), arguments[1]);
+      uploadFile(credentials(), ask("File name: "), arguments[1]);
       return;
     }
-    error("error");
   }
+  error("error");
+  inform();
 }

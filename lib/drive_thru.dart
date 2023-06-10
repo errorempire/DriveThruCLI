@@ -37,7 +37,7 @@ drivethru u [arguments] | upload [arguments]   :: upload a file to Google Drive
   exit(0);
 }
 
-dynamic listFiles(ClientId clientId, List<String> scopes) {
+dynamic listFiles(ClientId clientId) {
   clientViaUserConsent(clientId, scopes, prompt)
       .then((AuthClient client) async {
     var driveApi = drive_v3.DriveApi(client);
@@ -56,8 +56,7 @@ dynamic listFiles(ClientId clientId, List<String> scopes) {
   });
 }
 
-dynamic uploadFile(
-    ClientId clientId, List<String> scopes, String name, String path) async {
+dynamic uploadFile(ClientId clientId, String name, String path) async {
   clientViaUserConsent(clientId, scopes, prompt)
       .then((AuthClient client) async {
     var driveApi = drive_v3.DriveApi(client);
